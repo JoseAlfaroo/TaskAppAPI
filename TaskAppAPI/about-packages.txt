@@ -1,0 +1,7 @@
+
+// Paquetes necesarios
+
+Microsoft.EntityFrameworkCore - 9.0.1
+Microsoft.EntityFrameworkCore.SqlServer - 9.0.1
+Microsoft.EntityFrameworkCore.Tools - 9.0.1
+Swashbuckle.AspNetCore - 7.2.0
