@@ -2,7 +2,7 @@
 dotnet tool install --global dotnet-ef
 
 // Agregar migracion
-dotnet ef migrations add InitialMigration
+dotnet ef migrations add MigrationName
 
 // Actualizar base de datos de acuerdo a migraciones
 dotnet ef database update
