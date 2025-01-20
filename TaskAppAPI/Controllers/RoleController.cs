@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TaskAppAPI.Contexts;
 using TaskAppAPI.DTOs.Role;
 using TaskAppAPI.DTOs.User;
@@ -21,6 +22,13 @@ namespace TaskAppAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateRole([FromBody] RoleRegisterDTO roleRegisterDTO)
         {
+            var roleExists = await _context.Roles.AnyAsync(r => r.RoleName == roleRegisterDTO.RoleName);
+
+            if (roleExists)
+            {
+                return Conflict(new { Message = "Este rol ya existe" });
+            }
+
             try
             {
                 RoleModel newRole = new RoleModel
@@ -38,6 +46,14 @@ namespace TaskAppAPI.Controllers
             {
                 return StatusCode(500, new { message = ex.Message });
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllRoles()
+        {
+            var roles = await _context.Roles.ToListAsync();
+
+            return Ok(roles);
         }
     }
 }
