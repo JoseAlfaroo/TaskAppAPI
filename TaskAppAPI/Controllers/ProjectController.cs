@@ -118,7 +118,7 @@ namespace TaskAppAPI.Controllers
 
             if (!projects.Any())
             {
-                return BadRequest(new { Message = "Este usuario no tiene proyectos" });
+                return Ok(new { Message = "Este usuario no tiene proyectos" });
             }
 
             var userFullName = $"{user!.FirstName} {user!.LastName}";
